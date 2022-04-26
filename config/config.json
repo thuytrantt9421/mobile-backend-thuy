@@ -1,21 +1,32 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "backend",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "inthtxwzgmrntf",
+    "password": "efe63d141e0b3332ef224505a7d61edb0656cc66ca9dda986c9a08d393395725",
+    "database": "d91m945esqk69o",
+    "host": "ec2-3-229-252-6.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "logging": false,
+    "query": {
+      "raw": true
+    },
+    "timezone": "+07:00",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "10083993",
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": null,
+    "password": "10083993",
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
