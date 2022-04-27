@@ -24,14 +24,14 @@ module.exports = {
       disable: {
         type: Sequelize.BOOLEAN,
       },
-      // createdAt: {
-      //   allowNull: true,
-      //   type: Sequelize.DATE,
-      // },
-      // updatedAt: {
-      //   allowNull: true,
-      //   type: Sequelize.DATE,
-      // },
+      createdAt: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
