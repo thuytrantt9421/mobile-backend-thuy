@@ -11,7 +11,7 @@ const db = {};
 let sequelize;
 
 const customerConfig = {
-  host: "ec2-3-229-252-6.compute-1.amazonaws.com",
+  host: "ec2-3-228-235-79.compute-1.amazonaws.com",
   dialect: "postgres",
   logging: false,
   query: {
