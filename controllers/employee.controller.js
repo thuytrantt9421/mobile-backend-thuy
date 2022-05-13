@@ -51,7 +51,7 @@ const createEmployee = async (req, res) => {
       DOB,
       gender,
       cccd,
-      timekeeping_photo: req.file.path,
+      // timekeeping_photo: req.file.path,
       phoneNumber,
       personalEmail,
       companyEmail,
