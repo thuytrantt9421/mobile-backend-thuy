@@ -6,7 +6,13 @@ const registerUser = async (req, res) => {
   console.log(req.body);
   try {
     const newUser = await User.create({ username, password, role, disable: 0 });
-    res.status(200).send({ messange: "Đăng ký thành công", username });
+    const loginUser = await User.findOne({
+      where: {
+        username,
+        password,
+      },
+    });
+    res.status(200).send({ messange: "Đăng ký thành công", id: loginUser.id });
     console.log(newUser);
   } catch (error) {
     res.status(500).send(error);
