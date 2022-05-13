@@ -2,7 +2,7 @@ const { Employee } = require("../models");
 
 const listEmployee = async (req, res) => {
   try {
-    const employees = await Employee.findAll();
+    const employees = await employeeService.getAllEmployee();
     res.status(200).send({ employees });
   } catch (error) {
     res.status(500).send(error);
