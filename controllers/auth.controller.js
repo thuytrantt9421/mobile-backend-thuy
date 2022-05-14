@@ -47,7 +47,22 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getUserInfo = async (req, res) => {
+  const id = req.query.id;
+  try {
+    const user = await User.findOne({
+      where: {
+        id: id,
+      },
+    });
+    res.status(200).send(user.username);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getUserInfo,
 };
