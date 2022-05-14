@@ -98,7 +98,7 @@ const updateEmployee = async (req, res) => {
         gender,
         cccd,
         //        front_photo, back_photo,
-        timekeeping_photo,
+        timekeeping_photo: req.file.path,
         phoneNumber,
         personalEmail,
         companyEmail,
