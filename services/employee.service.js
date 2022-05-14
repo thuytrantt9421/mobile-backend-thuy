@@ -23,11 +23,7 @@ let getEmployeeByUserId = (id) => {
     try {
       let result = "";
       result = await sequelize.query(
-        `SELECT e.*, d.name as department, p.name as position 
-        FROM employees e 
-        JOIN departments d ON e.department_id = d.id 
-        JOIN positions p ON e.position_id = p.id
-        WHERE e.user_id = ${id}`,
+        `SELECT e.*, d.name as department, p.name as position FROM "Employees" e JOIN "Departments" d ON e.department_id = d.id JOIN "Positions" p ON e.position_id = p.id WHERE e.user_id = ${id}`,
         {
           type: db.SELECT,
         }
