@@ -148,4 +148,5 @@ module.exports = {
   updateEmployee,
   deleteEmployee,
   getEmployeeInfo,
+  getEmployeeInfoByUserid,
 };
