@@ -107,7 +107,7 @@ const updateEmployee = async (req, res) => {
       },
       {
         where: {
-          id: req.params.employeeId,
+          id: req.query.employeeId,
         },
       }
     );
