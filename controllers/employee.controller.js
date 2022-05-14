@@ -78,7 +78,7 @@ const updateEmployee = async (req, res) => {
     gender,
     cccd,
     //        front_photo, back_photo,
-    timekeeping_photo,
+    // timekeeping_photo,
     phoneNumber,
     personalEmail,
     companyEmail,
@@ -98,7 +98,7 @@ const updateEmployee = async (req, res) => {
         gender,
         cccd,
         //        front_photo, back_photo,
-        timekeeping_photo: req.file.path,
+        // timekeeping_photo: req.file.path,
         phoneNumber,
         personalEmail,
         companyEmail,
@@ -128,6 +128,16 @@ const deleteEmployee = async (req, res) => {
       },
     });
     res.status(200).send({ result: "OK" });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getEmployeeInfoByUserid = async (req, res) => {
+  const id = req.query.id;
+  try {
+    const employee = await employeeService.getEmployeeByUserId(id);
+    res.status(200).send(employee);
   } catch (error) {
     res.status(500).send(error);
   }
