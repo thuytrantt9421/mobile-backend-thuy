@@ -121,7 +121,7 @@ const deleteEmployee = async (req, res) => {
   try {
     await Employee.destroy({
       where: {
-        id: req.params.employeeId,
+        id: req.query.employeeId,
       },
     });
     res.status(200).send({ result: "OK" });
