@@ -11,11 +11,11 @@ const listEmployee = async (req, res) => {
 };
 
 const getEmployeeInfo = async (req, res) => {
-  const { user } = req.user;
+  const { id } = req.body;
   try {
     const employee = await Employee.findOne({
       where: {
-        id: user.id,
+        id: id,
       },
     });
     res.status(200).send(employee);
