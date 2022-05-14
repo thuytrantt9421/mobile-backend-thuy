@@ -61,8 +61,22 @@ const getUserInfo = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  try {
+    await User.destroy({
+      where: {
+        id: req.query.id,
+      },
+    });
+    res.status(200).send({ result: "OK" });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getUserInfo,
+  deleteUser,
 };

@@ -3,6 +3,7 @@ const {
   registerUser,
   loginUser,
   getUserInfo,
+  deleteUser,
 } = require("../controllers/auth.controller");
 const { authenticate } = require("../middleware/authenticate");
 
@@ -14,6 +15,7 @@ userRouter.get("/test", (req, res) => {
   res.send("hello");
 });
 userRouter.get("/getUserInfo", authenticate, getUserInfo);
+userRouter.delete("/deleteUser", authenticate, deleteUser);
 
 module.exports = {
   userRouter,
