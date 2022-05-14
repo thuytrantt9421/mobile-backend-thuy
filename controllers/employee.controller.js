@@ -11,7 +11,7 @@ const listEmployee = async (req, res) => {
 };
 
 const getEmployeeInfo = async (req, res) => {
-  const { id } = req.body;
+  const id = req.query.id;
   try {
     const employee = await Employee.findOne({
       where: {
