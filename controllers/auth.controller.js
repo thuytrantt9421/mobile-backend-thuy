@@ -55,7 +55,7 @@ const getUserInfo = async (req, res) => {
         id: id,
       },
     });
-    res.status(200).send(user.username);
+    res.status(200).send(user);
   } catch (error) {
     res.status(500).send(error);
   }
