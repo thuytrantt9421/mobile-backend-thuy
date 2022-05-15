@@ -18,7 +18,7 @@ employeeRouter.post(
   "/createEmployee",
   authenticate,
   authorize,
-  upload.single("timekeeping_photo"),
+  // upload.single("timekeeping_photo"),
   createEmployee
 );
 employeeRouter.put("/updateEmployee", authenticate, updateEmployee);
