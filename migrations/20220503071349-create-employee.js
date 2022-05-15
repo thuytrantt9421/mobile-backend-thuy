@@ -33,7 +33,8 @@ module.exports = {
         type: Sequelize.STRING,
       },
       timekeeping_photo: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
+        l,
       },
       phoneNumber: {
         type: Sequelize.STRING,
