@@ -11,7 +11,7 @@ rootRouter.use("/auth", userRouter);
 rootRouter.use("/department", departmentRouter);
 rootRouter.use("/position", positionRouter);
 rootRouter.use("/employee", employeeRouter);
-rootRouter.use("/timeKeeping", timeKeepingRouter);
+rootRouter.use("/timekeeping", timeKeepingRouter);
 rootRouter.use("/", (req, res) => {
   res.send("hello");
 });
