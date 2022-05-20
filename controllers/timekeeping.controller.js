@@ -2,7 +2,7 @@ const { User, TimekeepingInfo } = require("../models");
 const { Op } = require("sequelize");
 
 const timeKeeping = async (req, res) => {
-  const { user } = req;
+  const { id } = req.body;
   try {
     // const employee = await Employee.findOne({
     //     where : {
@@ -22,7 +22,7 @@ const timeKeeping = async (req, res) => {
           [Op.lt]: dateNow,
           [Op.gt]: dNow,
         },
-        user_id: user.id,
+        user_id: id,
       },
     });
     if (date) {
@@ -34,14 +34,14 @@ const timeKeeping = async (req, res) => {
               [Op.lt]: dateNow,
               [Op.gt]: dNow,
             },
-            user_id: user.id,
+            user_id: id,
           },
         }
       );
       res.status(201).send({ message: "thành công" });
     } else {
       const d = await TimekeepingInfo.create({
-        user_id: user.id,
+        user_id: id,
         status: "start",
       });
       res.status(201).send({ message: "thành công" });
