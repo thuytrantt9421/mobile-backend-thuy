@@ -51,7 +51,7 @@ const timeKeeping = async (req, res) => {
   }
 };
 const getTimeKeeping = async (req, res) => {
-  // const { user } = req;
+  const { user } = req;
   const { id, start, end } = req.body;
   try {
     // console.log(start, end);
