@@ -51,8 +51,8 @@ const timeKeeping = async (req, res) => {
   }
 };
 const getTimeKeeping = async (req, res) => {
-  const { user } = req;
-  const { start, end } = req.body;
+  // const { user } = req;
+  const { id, start, end } = req.body;
   try {
     // console.log(start, end);
     console.log(user);
@@ -64,7 +64,7 @@ const getTimeKeeping = async (req, res) => {
             [Op.lt]: new Date(),
             [Op.gt]: new Date(new Date() - 24 * 10 * 60 * 60 * 1000),
           },
-          user_id: user.id,
+          user_id: id,
         },
       });
       res.status(201).send({ message: "thành công", listLichsu });
@@ -75,7 +75,7 @@ const getTimeKeeping = async (req, res) => {
             [Op.lt]: start,
             [Op.gt]: end,
           },
-          user_id: user.id,
+          user_id: id,
         },
       });
       res.status(201).send({ message: "thành công", listLichsu });
