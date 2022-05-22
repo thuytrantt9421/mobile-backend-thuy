@@ -83,7 +83,7 @@ const deleteUser = async (req, res) => {
 };
 
 const recoveryPassword = async (req, res) => {
-  const { password, otp, email } = req.body;
+  const { password, otp, email, repassword } = req.body;
   try {
     const employee = await Employee.findOne({
       where: {
@@ -91,7 +91,7 @@ const recoveryPassword = async (req, res) => {
       },
     });
     console.log(employee);
-    if (otp === OTP && employee) {
+    if (otp === OTP && employee && repassword === password) {
       await User.update(
         { password },
         {
