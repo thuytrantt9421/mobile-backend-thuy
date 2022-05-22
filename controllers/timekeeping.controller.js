@@ -2,7 +2,7 @@ const { User, TimekeepingInfo } = require("../models");
 const { Op } = require("sequelize");
 
 const timeKeeping = async (req, res) => {
-  const { id } = req.body;
+  const { user } = req;
   try {
     const dateNow = new Date();
     const dNow = new Date(
@@ -16,11 +16,11 @@ const timeKeeping = async (req, res) => {
           [Op.lt]: dateNow,
           [Op.gt]: dNow,
         },
-        user_id: id,
+        user_id: user.id,
       },
     });
     if (date) {
-      const d = await TimekeepingInfo.update(
+      await TimekeepingInfo.update(
         { status: "end", updatedAt: new Date() },
         {
           where: {
@@ -28,38 +28,44 @@ const timeKeeping = async (req, res) => {
               [Op.lt]: dateNow,
               [Op.gt]: dNow,
             },
-            user_id: id,
+            user_id: user.id,
           },
         }
       );
-      res.status(201).send({ message: "thành công" });
     } else {
-      const d = await TimekeepingInfo.create({
-        user_id: id,
+      await TimekeepingInfo.create({
+        user_id: user.id,
         status: "start",
-        date: dateNow,
       });
-      res.status(200).send({ message: "thành công" });
     }
+    // const d = await TimekeepingInfo.findOne({
+    //     where:{
+    //         createdAt:{
+    //             [Op.lt]: dateNow,
+    //             [Op.gt]: dNow
+    //         },
+    //         user_id:user.id
+    //     }
+    // });
+    // console.log(d.createdAt.getDate());
+    res.status(201).send({ message: "thành công" });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 const getTimeKeeping = async (req, res) => {
   const { user } = req;
-  const { id, start, end } = req.body;
+  const { start, end } = req.body;
   try {
     // console.log(start, end);
-    console.log(user);
     if (start == undefined || end == undefined) {
-      console.log(user);
       const listLichsu = await TimekeepingInfo.findAll({
         where: {
           createdAt: {
             [Op.lt]: new Date(),
             [Op.gt]: new Date(new Date() - 24 * 10 * 60 * 60 * 1000),
           },
-          user_id: id,
+          user_id: user.id,
         },
       });
       res.status(201).send({ message: "thành công", listLichsu });
@@ -70,10 +76,10 @@ const getTimeKeeping = async (req, res) => {
             [Op.lt]: start,
             [Op.gt]: end,
           },
-          user_id: id,
+          user_id: user.id,
         },
       });
-      res.status(200).send({ message: "thành công", listLichsu });
+      res.status(201).send({ message: "thành công", listLichsu });
     }
   } catch (error) {
     res.status(500).send(error);
@@ -81,7 +87,7 @@ const getTimeKeeping = async (req, res) => {
 };
 
 const thongtinchamcong = async (req, res) => {
-  const id = req.query.id;
+  const { user } = req;
   try {
     const dateNow = new Date();
     const arrDate = [];
@@ -95,7 +101,7 @@ const thongtinchamcong = async (req, res) => {
           [Op.lt]: dateNow,
           [Op.gt]: dNow,
         },
-        user_id: id,
+        user_id: user.id,
       },
     });
     const thongtinArr = d.map((day) => {
@@ -128,12 +134,11 @@ const thongtinchamcong = async (req, res) => {
     //         return {day:day, status:"nghi"};
     //     }
     // });
-    res.status(200).send({ message: "thành công", thongtinArr });
+    res.status(201).send({ message: "thành công", thongtinArr });
   } catch (error) {
     res.status(500).send(error);
   }
 };
-
 const addDayoff = async (req, res) => {};
 
 module.exports = {

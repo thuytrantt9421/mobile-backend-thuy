@@ -29,9 +29,13 @@ const loginUser = async (req, res) => {
       },
     });
     if (loginUser) {
-      const token = jwt.sign({ username, role: loginUser.role }, "pikachu", {
-        expiresIn: 60 * 60,
-      });
+      const token = jwt.sign(
+        { username, role: loginUser.role, id: loginUser.id },
+        "pikachu",
+        {
+          expiresIn: 60 * 60,
+        }
+      );
       res.status(201).send({
         messenger: "Đăng nhập thành công",
         id: loginUser.id,
