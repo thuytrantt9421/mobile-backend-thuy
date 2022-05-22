@@ -4,6 +4,7 @@ const cors = require("cors");
 const { sequelize } = require("./models");
 const { rootRouter } = require("./routers");
 const { QueryTypes } = require("sequelize");
+const { autoCheck } = require("./middleware/autoCheck");
 const app = express();
 const port = 3000;
 
@@ -30,7 +31,7 @@ app.use(
 );
 
 app.use("/api", rootRouter);
-
+autoCheck();
 // app.get('/api/', (req, res) => {
 //   res.send('Hello World!')
 // })
