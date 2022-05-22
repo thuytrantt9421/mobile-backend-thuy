@@ -81,7 +81,7 @@ const getTimeKeeping = async (req, res) => {
 };
 
 const thongtinchamcong = async (req, res) => {
-  const { id } = req;
+  const id = req.query.id;
   try {
     const dateNow = new Date();
     const arrDate = [];
