@@ -5,6 +5,7 @@ const {
   getUserInfo,
   deleteUser,
   recoveryPassword,
+  sendOTP,
 } = require("../controllers/auth.controller");
 const { authenticate } = require("../middleware/authenticate");
 
@@ -17,7 +18,8 @@ userRouter.get("/test", (req, res) => {
 });
 userRouter.get("/getUserInfo", authenticate, getUserInfo);
 userRouter.delete("/deleteUser", authenticate, deleteUser);
-userRouter.put("/recoveryPassword", authenticate, recoveryPassword);
+userRouter.put("/recoveryPassword", recoveryPassword);
+userRouter.post("/sendOTP", sendOTP);
 
 module.exports = {
   userRouter,

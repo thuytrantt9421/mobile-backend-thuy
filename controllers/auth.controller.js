@@ -1,5 +1,8 @@
 const { User } = require("../models");
 const jwt = require("jsonwebtoken");
+const { Auth } = require("two-step-auth");
+
+var OTP = 0;
 
 const registerUser = async (req, res) => {
   const { username, password, role } = req.body;
@@ -79,17 +82,30 @@ const deleteUser = async (req, res) => {
 };
 
 const recoveryPassword = async (req, res) => {
-  const { password } = req.body;
+  const { password, otp } = req.body;
   try {
-    await User.update(
-      { password },
-      {
-        where: {
-          id: req.query.id,
-        },
-      }
-    );
-    res.status(200).send({ result: "OK" });
+    if (otp === OTP) {
+      await User.update(
+        { password },
+        {
+          where: {
+            id: req.query.id,
+          },
+        }
+      );
+      res.status(200).send({ result: "OK" });
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const sendOTP = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const otpRes = await Auth(email);
+    OTP = otpRes.OTP;
+    res.status(200).send({ result: "OK", otpRes });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -101,4 +117,5 @@ module.exports = {
   getUserInfo,
   deleteUser,
   recoveryPassword,
+  sendOTP,
 };
