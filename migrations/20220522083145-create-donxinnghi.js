@@ -31,6 +31,9 @@ module.exports = {
           key: "id",
         },
       },
+      reason: {
+        type: Sequelize.STRING,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
