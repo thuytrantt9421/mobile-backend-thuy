@@ -78,9 +78,27 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const recoveryPassword = async (req, res) => {
+  const { password } = req.body;
+  try {
+    await User.update(
+      { password },
+      {
+        where: {
+          id: req.query.id,
+        },
+      }
+    );
+    res.status(200).send({ result: "OK" });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getUserInfo,
   deleteUser,
+  recoveryPassword,
 };
