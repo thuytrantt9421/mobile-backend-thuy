@@ -39,7 +39,7 @@ const timeKeeping = async (req, res) => {
         status: "start",
         date: dateNow,
       });
-      res.status(201).send({ message: "thành công" });
+      res.status(200).send({ message: "thành công" });
     }
   } catch (error) {
     res.status(500).send(error);
@@ -73,7 +73,7 @@ const getTimeKeeping = async (req, res) => {
           user_id: id,
         },
       });
-      res.status(201).send({ message: "thành công", listLichsu });
+      res.status(200).send({ message: "thành công", listLichsu });
     }
   } catch (error) {
     res.status(500).send(error);
@@ -128,7 +128,7 @@ const thongtinchamcong = async (req, res) => {
     //         return {day:day, status:"nghi"};
     //     }
     // });
-    res.status(201).send({ message: "thành công", thongtinArr });
+    res.status(200).send({ message: "thành công", thongtinArr });
   } catch (error) {
     res.status(500).send(error);
   }
