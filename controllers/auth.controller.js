@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const { Employee } = require("../models");
 const jwt = require("jsonwebtoken");
 const { Auth } = require("two-step-auth");
 
@@ -82,14 +83,20 @@ const deleteUser = async (req, res) => {
 };
 
 const recoveryPassword = async (req, res) => {
-  const { password, otp } = req.body;
+  const { password, otp, email } = req.body;
   try {
-    if (otp === OTP) {
+    const employee = await Employee.findOne({
+      where: {
+        personalEmail: email,
+      },
+    });
+    console.log(employee);
+    if (otp === OTP && employee) {
       await User.update(
         { password },
         {
           where: {
-            id: req.query.id,
+            id: employee.user_id,
           },
         }
       );
