@@ -11,6 +11,16 @@ const listEmployee = async (req, res) => {
 };
 
 const getEmployeeInfo = async (req, res) => {
+  const { user } = req;
+  try {
+    const employee = await employeeService.getEmployeeByUserId(user.id);
+    res.status(200).send(employee);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+const getEmployeeInfo_forWeb = async (req, res) => {
   const id = req.query.id;
   try {
     const employee = await Employee.findOne({
@@ -133,20 +143,11 @@ const deleteEmployee = async (req, res) => {
   }
 };
 
-const getEmployeeInfoByUserid = async (req, res) => {
-  const id = req.query.id;
-  try {
-    const employee = await employeeService.getEmployeeByUserId(id);
-    res.status(200).send(employee);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
 module.exports = {
   listEmployee,
   createEmployee,
   updateEmployee,
   deleteEmployee,
   getEmployeeInfo,
-  getEmployeeInfoByUserid,
+  getEmployeeInfo_forWeb,
 };

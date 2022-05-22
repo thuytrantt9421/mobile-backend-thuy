@@ -6,6 +6,7 @@ const {
   deleteEmployee,
   getEmployeeInfo,
   getEmployeeInfoByUserid,
+  getEmployeeInfo_forWeb,
 } = require("../controllers/employee.controller");
 const { authenticate } = require("../middleware/authenticate");
 const { authorize } = require("../middleware/authorize");
@@ -30,9 +31,9 @@ employeeRouter.delete(
 );
 employeeRouter.get("/getEmployeeInfo", authenticate, getEmployeeInfo);
 employeeRouter.get(
-  "/getEmployeeInfoByUserId",
+  "/getEmployeeInfoForWeb",
   authenticate,
-  getEmployeeInfoByUserid
+  getEmployeeInfo_forWeb
 );
 
 module.exports = { employeeRouter };
