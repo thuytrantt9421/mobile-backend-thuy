@@ -144,6 +144,7 @@ const getThongtinchamcongBydate = async (req, res) => {
   const { user } = req;
   const { date, month, year } = req.body;
   try {
+    console.log(date, user);
     const lichsu = await TimekeepingInfo.findOne({
       where: {
         createdAt: {
@@ -153,11 +154,15 @@ const getThongtinchamcongBydate = async (req, res) => {
         user_id: user.id,
       },
     });
-    if (lichsu.status == "nghi") res.status(201).send({ lichsu });
-    else if ((lichsu.updatedAt - lichsu.createdAt) / (60 * 60 * 1000) < 8) {
-      res.status(201).send({ lichsu, status: "congthieu" });
+    if (lichsu) {
+      if (lichsu.status == "nghi") res.status(201).send({ lichsu });
+      else if ((lichsu.updatedAt - lichsu.createdAt) / (60 * 60 * 1000) < 8) {
+        res.status(201).send({ lichsu, status: "congthieu" });
+      } else {
+        res.status(201).send({ lichsu, status: "congdu" });
+      }
     } else {
-      res.status(201).send({ lichsu, status: "congdu" });
+      res.status(201).send({ message: "không tìm thấy" });
     }
   } catch (error) {
     res.status(500).send(error);
