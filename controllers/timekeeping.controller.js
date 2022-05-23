@@ -151,8 +151,7 @@ const getThongtinchamcongBydate = async (req, res) => {
           [Op.gt]: new Date(
             date.getFullYear(),
             date.getMonth(),
-            date.getDate(),
-            1
+            date.getDate()
           ),
         },
         user_id: user.id,
