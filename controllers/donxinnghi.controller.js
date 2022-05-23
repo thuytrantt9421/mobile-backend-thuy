@@ -36,6 +36,23 @@ const userCreateDonxinnghi = async (req, res) => {
   }
 };
 
+const userEditDonxinnghi = async (req, res) => {
+  const { user } = req;
+  const { date, reason } = req.body;
+  try {
+    const donxinnghi = await Donxinnghi.update(
+      {
+        date,
+        reason,
+      },
+      { where: { user_id: user.id } }
+    );
+    res.status(201).send({ donxinnghi });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 const adminAcceptDonxinnghi = async (req, res) => {
   try {
     const donxinnghi = await Donxinnghi.update(
@@ -92,4 +109,5 @@ module.exports = {
   adminAcceptDonxinnghi,
   deleteDonxinnghi,
   adminRefuseDonxinnghi,
+  userEditDonxinnghi,
 };
