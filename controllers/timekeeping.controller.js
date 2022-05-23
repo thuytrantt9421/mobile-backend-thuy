@@ -148,7 +148,12 @@ const getThongtinchamcongBydate = async (req, res) => {
       where: {
         createdAt: {
           [Op.lt]: date,
-          [Op.gt]: new Date(date.getFullYear, date.getMonth, date.getDate, 23),
+          [Op.gt]: new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate(),
+            1
+          ),
         },
         user_id: user.id,
       },
