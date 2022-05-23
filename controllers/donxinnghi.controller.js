@@ -3,7 +3,7 @@ const { Donxinnghi } = require("../models");
 const userGetList = async (req, res) => {
   const { user } = req;
   try {
-    const listDonxinnghi = Donxinnghi.findAll({
+    const listDonxinnghi = await Donxinnghi.findAll({
       where: {
         user_id: user.id,
       },
@@ -16,7 +16,7 @@ const userGetList = async (req, res) => {
 
 const adminGetList = async (req, res) => {
   try {
-    const listDonxinnghi = Donxinnghi.findAll();
+    const listDonxinnghi = await Donxinnghi.findAll();
     res.status(201).send({ listDonxinnghi });
   } catch (error) {
     res.status(500).send(error);
@@ -27,11 +27,11 @@ const userCreateDonxinnghi = async (req, res) => {
   const { user } = req;
   const { date, reason } = req.body;
   try {
-    const donxinnghi = Donxinnghi.create({
+    const donxinnghi = await Donxinnghi.create({
       user_id: user.id,
-      date: date,
+      date,
       status: "wait",
-      reason: reason,
+      reason,
     });
     res.status(201).send({ donxinnghi });
   } catch (error) {
@@ -41,7 +41,7 @@ const userCreateDonxinnghi = async (req, res) => {
 
 const adminAcceptDonxinnghi = async (req, res) => {
   try {
-    const donxinnghi = Donxinnghi.update(
+    const donxinnghi = await Donxinnghi.update(
       {
         status: "accept",
       },
@@ -59,7 +59,7 @@ const adminAcceptDonxinnghi = async (req, res) => {
 
 const adminRefuseDonxinnghi = async (req, res) => {
   try {
-    const donxinnghi = Donxinnghi.update(
+    const donxinnghi = await Donxinnghi.update(
       {
         status: "refuse",
       },
@@ -77,7 +77,7 @@ const adminRefuseDonxinnghi = async (req, res) => {
 
 const deleteDonxinnghi = async (req, res) => {
   try {
-    const donxinnghi = Donxinnghi.destroy({
+    const donxinnghi = await Donxinnghi.destroy({
       where: {
         id: req.params.id,
       },
