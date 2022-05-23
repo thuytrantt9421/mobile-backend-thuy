@@ -27,13 +27,13 @@ const userCreateDonxinnghi = async (req, res) => {
   const { user } = req;
   const { date, reason } = req.body;
   try {
-    const Donxinnghi = Donxinnghi.create({
+    const donxinnghi = Donxinnghi.create({
       user_id: user.id,
       date: date,
       status: "wait",
       reason: reason,
     });
-    res.status(201).send({ Donxinnghi });
+    res.status(201).send({ donxinnghi });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -41,7 +41,7 @@ const userCreateDonxinnghi = async (req, res) => {
 
 const adminAcceptDonxinnghi = async (req, res) => {
   try {
-    const Donxinnghi = Donxinnghi.update(
+    const donxinnghi = Donxinnghi.update(
       {
         status: "accept",
       },
@@ -51,7 +51,7 @@ const adminAcceptDonxinnghi = async (req, res) => {
         },
       }
     );
-    res.status(201).send({ Donxinnghi });
+    res.status(201).send({ donxinnghi });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -59,7 +59,7 @@ const adminAcceptDonxinnghi = async (req, res) => {
 
 const adminRefuseDonxinnghi = async (req, res) => {
   try {
-    const Donxinnghi = Donxinnghi.update(
+    const donxinnghi = Donxinnghi.update(
       {
         status: "refuse",
       },
@@ -69,7 +69,7 @@ const adminRefuseDonxinnghi = async (req, res) => {
         },
       }
     );
-    res.status(201).send({ Donxinnghi });
+    res.status(201).send({ donxinnghi });
   } catch (error) {
     res.status(500).send(error);
   }
@@ -77,7 +77,7 @@ const adminRefuseDonxinnghi = async (req, res) => {
 
 const deleteDonxinnghi = async (req, res) => {
   try {
-    const Donxinnghi = Donxinnghi.destroy({
+    const donxinnghi = Donxinnghi.destroy({
       where: {
         id: req.params.id,
       },
