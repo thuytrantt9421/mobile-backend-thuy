@@ -25,12 +25,13 @@ const adminGetList = async (req, res) => {
 
 const userCreateDonxinnghi = async (req, res) => {
   const { user } = req;
-  const { date } = req.body;
+  const { date, reason } = req.body;
   try {
     const Donxinnghi = Donxinnghi.create({
       user_id: user.id,
       date: date,
       status: "wait",
+      reason: reason,
     });
     res.status(201).send({ Donxinnghi });
   } catch (error) {
