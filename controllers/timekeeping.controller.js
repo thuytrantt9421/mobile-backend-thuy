@@ -142,7 +142,7 @@ const thongtinchamcong = async (req, res) => {
 
 const getThongtinchamcongBydate = async (req, res) => {
   const { user } = req;
-  const { date } = req.body;
+  const { date, month, year } = req.body;
   try {
     const lichsu = await TimekeepingInfo.findOne({
       where: {
