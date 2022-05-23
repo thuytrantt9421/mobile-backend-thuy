@@ -1,4 +1,5 @@
 const { Donxinnghi } = require("../models");
+const requestService = require("../services/donxinnghi.service");
 
 const userGetList = async (req, res) => {
   const { user } = req;
@@ -16,7 +17,7 @@ const userGetList = async (req, res) => {
 
 const adminGetList = async (req, res) => {
   try {
-    const listDonxinnghi = await Donxinnghi.findAll();
+    const listDonxinnghi = await requestService.getAllRequest();
     res.status(201).send({ listDonxinnghi });
   } catch (error) {
     res.status(500).send(error);
