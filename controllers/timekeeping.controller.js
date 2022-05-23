@@ -139,10 +139,36 @@ const thongtinchamcong = async (req, res) => {
     res.status(500).send(error);
   }
 };
+
+const getThongtinchamcongBydate = async (req, res) => {
+  const { user } = req;
+  const { date } = req.body;
+  try {
+    const lichsu = await TimekeepingInfo.findOne({
+      where: {
+        createdAt: {
+          [Op.lt]: date,
+          [Op.gt]: new Date(date.getFullYear, date.getMonth, date.getDate, 23),
+        },
+        user_id: user.id,
+      },
+    });
+    if (lichsu.status == "nghi") res.status(201).send({ lichsu });
+    else if ((lichsu.updatedAt - lichsu.createdAt) / (60 * 60 * 1000) < 8) {
+      res.status(201).send({ lichsu, status: "congthieu" });
+    } else {
+      res.status(201).send({ lichsu, status: "congdu" });
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 const addDayoff = async (req, res) => {};
 
 module.exports = {
   timeKeeping,
   getTimeKeeping,
   thongtinchamcong,
+  getThongtinchamcongBydate,
 };

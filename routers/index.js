@@ -1,5 +1,6 @@
 const express = require("express");
 const { userRouter } = require("./auth.router");
+const { dayoffRouter } = require("./dayoff.router");
 const { departmentRouter } = require("./department.route");
 const { donxinnghiRouter } = require("./donxinnghi.router");
 const { employeeRouter } = require("./employee.router");
@@ -16,6 +17,7 @@ rootRouter.use("/employee", employeeRouter);
 rootRouter.use("/timekeeping", timeKeepingRouter);
 rootRouter.use("/wifi", wifiRouter);
 rootRouter.use("/donxinnghi", donxinnghiRouter);
+rootRouter.use("/dayoff", dayoffRouter);
 rootRouter.use("/", (req, res) => {
   res.send("hello");
 });
