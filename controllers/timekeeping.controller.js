@@ -147,8 +147,8 @@ const getThongtinchamcongBydate = async (req, res) => {
     const lichsu = await TimekeepingInfo.findOne({
       where: {
         createdAt: {
-          [Op.lt]: new Date(date.getFullYear, date.getMonth, date.getDate, 23),
-          [Op.gt]: date,
+          [Op.lt]: new Date(year, month - 1, date, 23),
+          [Op.gt]: new Date(year, month - 1, date, 0),
         },
         user_id: user.id,
       },
