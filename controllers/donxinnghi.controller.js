@@ -30,8 +30,8 @@ const userCreateDonxinnghi = async (req, res) => {
     const donxinnghi = await Donxinnghi.create({
       user_id: user.id,
       date,
-      status: "wait",
       reason,
+      status: "wait",
     });
     res.status(201).send({ donxinnghi });
   } catch (error) {
