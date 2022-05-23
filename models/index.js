@@ -17,7 +17,7 @@ const customerConfig = {
   query: {
     raw: true,
   },
-  timezone: "+07:00",
+  // timezone: "+07:00",
   dialectOptions: {
     ssl: {
       require: true,
