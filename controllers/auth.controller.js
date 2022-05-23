@@ -107,11 +107,11 @@ const recoveryPassword = async (req, res) => {
   }
 };
 
-const sendOTP = async (req, res) => {
+const sendOTP = (req, res) => {
   const { email } = req.body;
   try {
-    const otpRes = await Auth(email);
-    OTP = otpRes.OTP;
+    const otpRes = Math.floor(100000 + Math.random() * 900000);
+    OTP = otpRes;
     res.status(200).send({ result: "OK", otpRes });
   } catch (error) {
     res.status(500).send(error);
