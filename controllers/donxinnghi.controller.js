@@ -4,11 +4,7 @@ const requestService = require("../services/donxinnghi.service");
 const userGetList = async (req, res) => {
   const { user } = req;
   try {
-    const listDonxinnghi = await Donxinnghi.findAll({
-      where: {
-        user_id: user.id,
-      },
-    });
+    const listDonxinnghi = await requestService.getAllRequestById(user.id);
     res.status(201).send({ listDonxinnghi });
   } catch (error) {
     res.status(500).send(error);
